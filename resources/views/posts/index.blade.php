@@ -7,18 +7,43 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h1>Blog Name</h1>
+        <header>
+            <h1><a herf='/'>麵stagram</a></h1>
+        </header>
+        
         <div class='posts'>
-            <div class='post'>
-                <h2 class='title'>Title</h2>
-                <p class='body'>This is a sample body.</p>
-                @foreach ($tags as $tag)
+            @foreach ($posts as $post)
+                <div class='post'>
                     <div class='post'>
-                        <h2 class='title'>{{ $tag->name }}</h2>
-                    </div>
-                @endforeach
-                <a href='/posts/create'>create</a>
-            </div>
+                        <h2 class="title">
+                            {{ $post->title }}
+                        </h2>
+                        
+                        <p class='user'>
+                            {{ $users['id'==$post->user_id]['name'] }}
+                        </p>
+                        
+                        <h2 class='ramen_name'>
+                            {{ $post->ramen_name }}
+                        </h2>
+                        
+                        <div class='price'>
+                            {{ $post->price }} 円
+                        </div>
+                        
+                        <div class="content">
+                            <h3 class="content__post">
+                                {{ $post->text }}    
+                            </h3>
+                        </div>
+                </div>
+            @endforeach
+            <a href='/posts/create'>create</a>
         </div>
+        
+
+
+        
+        
     </body>
 </html>
