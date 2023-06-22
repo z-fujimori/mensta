@@ -3,6 +3,13 @@
     <head>
         <meta charset="utf-8">
         <title>麺stagram</title>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+        <script src="https://maps.googleapis.com/maps/api/place/textsearch/xml?key=YOUR_API_KEY&<parameters>&language=ja"></script>
+        <script src="https://maps.googleapis.com/maps/api/place/detailes/xml?key=YOUR_API_KEY&<parameters>&language=ja"></script>
+        
+        <link rel="stylesheet" href="{{ asset('css/create.css')  }}" >
+        
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
@@ -11,7 +18,7 @@
             <h1><a herf='/'>麵stagram</a></h1>
         </header>
         
-        <form action="/posts" method="POST">
+        <form action="/posts" method="POST" enctype="multipart/form-data">
             <div class='create'>
                 @csrf
                 <div class="title">
@@ -24,20 +31,26 @@
                 </div>
                 <div class="price">
                     <h3>値段</h3>
-                    <input type="text" name="post[price]" placeholder="〇〇ラーメン" value="{{ old('post.price') }}"/>円
+                    <input type="text" name="post[price]" placeholder="850" value="{{ old('post.price') }}"/>円
                 </div>
                 <div class="text">
                     <h3>レビュー</h3>
                     <textarea name="post[text]" placeholder="すごくおいしかった。">{{ old('post.text') }}</textarea>
                 </div>
+                 <div class="image">
+                    <input id="image" type="file" multiple="multiple" name="image" accept="image/*">
+                </div>
+                <div id="preview" style="display:none"></div>
             </div>
             
             <input type="submit" value="投稿"/>
         </form>
+        
                 
                 
                 
 
         </div>
+        <script src="{{ asset('/js/create.js')  }}"></script>
     </body>
 </html>

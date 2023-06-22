@@ -5,6 +5,7 @@
         <title>麺stagram</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
     </head>
     <body>
         <header>
@@ -42,7 +43,7 @@
         </div>
         
 
-
+        
         
         
     </body>
