@@ -15,6 +15,18 @@ document.getElementById('image').addEventListener('change', function (e) {
 });
 
 
+
+
+
+document.getElementById('btn').addEventListener('click', function() {
+    
+    let name = document.getElementById('title').value;
+    
+    
+    
+});
+
+
 /*
 let key = 0;
 function loadImage(obj) {

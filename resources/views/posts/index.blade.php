@@ -12,6 +12,8 @@
             <h1><a herf='/'>麵stagram</a></h1>
         </header>
         
+        <a href='/posts/create'>create</a>
+        
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
@@ -39,7 +41,7 @@
                         </div>
                 </div>
             @endforeach
-            <a href='/posts/create'>create</a>
+            
         </div>
         
 

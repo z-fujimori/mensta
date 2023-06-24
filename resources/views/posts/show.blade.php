@@ -6,6 +6,9 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+        
+        <link rel="stylesheet" href="{{ asset('css/create.css')  }}" >
+        
     </head>
     <body>
         <header>
@@ -15,6 +18,11 @@
         <h2 class="title">
             {{ $post->title }}
         </h2>
+        
+        
+        @foreach($img as $image)
+            <img id="pre" src="{{$image['link']}}" class=pre>
+        @endforeach
         
         <h2 class='ramen_name'>
             {{ $post->ramen_name }}

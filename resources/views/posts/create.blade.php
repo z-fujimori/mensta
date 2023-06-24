@@ -23,7 +23,7 @@
                 @csrf
                 <div class="title">
                     <h3>タイトル</h3>
-                    <input type="text" name="post[title]" placeholder="〇〇家" value="{{ old('post.title') }}"/>
+                    <input id="title" type="text" name="post[title]" placeholder="〇〇家" value="{{ old('post.title') }}"/>
                 </div>
                 <div class="ramen_name">
                     <h3>ラーメン</h3>
@@ -38,7 +38,7 @@
                     <textarea name="post[text]" placeholder="すごくおいしかった。">{{ old('post.text') }}</textarea>
                 </div>
                  <div class="image">
-                    <input id="image" type="file" multiple="multiple" name="image" accept="image/*">
+                    <input id="image" type="file" multiple="multiple" name="image[]" accept="image/*">
                 </div>
                 <div id="preview" style="display:none"></div>
             </div>
@@ -46,7 +46,8 @@
             <input type="submit" value="投稿"/>
         </form>
         
-                
+        
+            <button type="button" id="btn"> 候補表示 </button>
                 
                 
 
