@@ -18,7 +18,7 @@
             <h1><a herf='/'>麵stagram</a></h1>
         </header>
         
-        <form action="/posts" method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data">
             <div class='create'>
                 @csrf
                 <div class="title">
@@ -43,7 +43,9 @@
                 <div id="preview" style="display:none"></div>
             </div>
             
-            <input type="submit" value="投稿"/>
+            
+            <button type="button" onclick="multipleaction('/candidate')">ページAに送信</button>
+            <button type="button" onclick="multipleaction('/posts')" >投稿</button>
         </form>
         
         

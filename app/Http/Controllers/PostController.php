@@ -16,9 +16,10 @@ use GuzzleHttp\Client;
 
 class PostController extends Controller
 {
-    public function index(Post $post,User $user){
-        return view('posts/index')->with(['users'=>$user->get(),'posts' => $post->get()]);
+    public function index(Post $post){
+        return view('posts/index')->with(['posts' => $post->getByat()]);
     }
+    
     public function map(Post $post,User $user){
         $url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?key='
         .config('services.google.apikey')
@@ -31,8 +32,7 @@ class PostController extends Controller
         $posts = json_decode($posts, true);
         dd($posts);
         
-        
-        return view('posts/map')->with(['users'=>$user->get(),'posts' => $post->get()]);
+        return view('posts/map')->with(['users'=>$user->get(),'posts' => $post->getByat()]);
     }
     
     public function show(Post $post,Image $image){
@@ -43,13 +43,24 @@ class PostController extends Controller
     public function create(Tag $tag){
         return view('posts/create');
     }
+    
+    public function candidate(Request $request){
+        dd($request);
+        $post['title'] = $request['post']->title;
+        dd($post);
+        /*
+        $post['ramen_name']
+        $post['price']
+        $post['text']
+        */
+    }
+    
     public function store(Post $post,Request $request){
         $input = $request['post'];
         $id = Auth::id();
         $input['user_id'] = $id;
         $input['restaurant_id'] = 1;
         $post->fill($input)->save();
-        
         //画像を複数読み取りたい
         $files = $request->file('image');
         if ($files!=null){
@@ -70,8 +81,5 @@ class PostController extends Controller
     public function resta(Request $request){
         $name = $request['post'];
         dd($name);
-        
-        
-        
     }
 }

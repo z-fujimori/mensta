@@ -21,6 +21,7 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/map','map')->name('map');
     Route::get('/posts/create','create')->name('create');
     Route::get('/posts/{post}','show')->name('show');
+    Route::post('/candidate', 'candidate')->name('candidate');
     Route::post('/posts', 'store')->name('store');
     Route::get('/resta','resta')->name('resta');
 });

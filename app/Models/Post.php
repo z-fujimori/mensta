@@ -19,4 +19,20 @@ class Post extends Model
         'user_id',
         'restaurant_id',
     ];
+    
+    public function images(){
+        return $this->hasMany(Image::class);
+    }
+    
+    public function getByat()
+    {
+        // updated_atで降順に並べた,eagerloadをするwith(['user','images'])
+        return $this->with(['user','images'])->orderBy('updated_at', 'DESC')->get();
+    }
+    
+    public function user(){
+        return $this->belongsTo(User::class);    
+    }
+        
 }
+

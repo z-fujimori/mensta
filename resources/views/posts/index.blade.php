@@ -6,6 +6,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/create.css')  }}" >
     </head>
     <body>
         <header>
@@ -23,7 +24,7 @@
                         </h2>
                         
                         <p class='user'>
-                            {{ $users['id'==$post->user_id]['name'] }}
+                            {{$post->user->name}}
                         </p>
                         
                         <h2 class='ramen_name'>
@@ -39,6 +40,12 @@
                                 {{ $post->text }}    
                             </h3>
                         </div>
+                        <div class="img">
+                            @foreach ($post->images as $image)
+                                <img id="pre" src="{{ $image->link }}" class=pre>
+                            @endforeach
+                        </div>
+                        
                 </div>
             @endforeach
             

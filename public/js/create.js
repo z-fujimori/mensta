@@ -15,6 +15,11 @@ document.getElementById('image').addEventListener('change', function (e) {
 });
 
 
+function multipleaction(u){
+    var f = document.querySelector("form");
+    var a = f.setAttribute("action", u);
+    document.querySelector("form").submit();
+}
 
 
 

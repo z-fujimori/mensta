@@ -18,4 +18,8 @@ class image extends Model
         'post_id',
         'link',
     ];
+    
+    public function post(){
+        return $this->belongsTo(Post::class);
+    }
 }
