@@ -13,7 +13,8 @@
             <h1><a herf='/'>麵stagram</a></h1>
         </header>
         
-        <a href='/posts/create'>create</a>
+        <h3><a href='/posts/create'>create</a></h3>
+        <h3><a href='/map'>map</a></h3>
         
         <div class='posts'>
             @foreach ($posts as $post)

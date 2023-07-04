@@ -23,12 +23,22 @@ function multipleaction(u){
 
 
 
+
 document.getElementById('btn').addEventListener('click', function() {
-    
     let name = document.getElementById('title').value;
+    //(await fetch('https://maps.googleapis.com/maps/api/place/nearbysearch/json?key="AIzaSyCRaqY3XnPELqZc4ibRzMujU8uhN7nY5BQ"&location=35.690921,139.700258&radius=3000&language=ja&keyword=公園')).json();
+    //console.log(fetch("https://maps.googleapis.com/maps/api/place/nearbysearch/json?key="AIzaSyCRaqY3XnPELqZc4ibRzMujU8uhN7nY5BQ"&location=35.690921,139.700258&radius=3000&language=ja&keyword=公園").json());
     
-    
-    
+    /*
+    var request = new XMLHttpRequest();
+    request.open('GET','https://maps.googleapis.com/maps/api/place/nearbysearch/json?key="AIzaSyCRaqY3XnPELqZc4ibRzMujU8uhN7nY5BQ"&location=35.690921,139.700258&radius=3000&language=ja&keyword=公園',true);
+    request.responseType = 'json';
+    request.onlode = function(){
+        var data = this.response;
+        console.log("a");
+    }
+    request.send();
+    */
 });
 
 

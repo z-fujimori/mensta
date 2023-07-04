@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Image;
+use App\Models\Restaurant;
 
 use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,7 @@ class PostController extends Controller
         $response = $client->request($method, $url);
         $posts = $response->getBody();
         $posts = json_decode($posts, true);
-        dd($posts);
+        //dd($posts);
         
         return view('posts/map')->with(['users'=>$user->get(),'posts' => $post->getByat()]);
     }
@@ -45,20 +46,46 @@ class PostController extends Controller
     }
     
     public function candidate(Request $request){
-        dd($request);
-        $post['title'] = $request['post']->title;
-        dd($post);
-        /*
-        $post['ramen_name']
-        $post['price']
-        $post['text']
-        */
+        $post = $request->post;
+        $imgs = $request->file('image');
+        //dd($request->file('image'));
+        //dd($request->file($file->getRealPath());
+        
+        $url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?key='
+        .config('services.google.apikey')
+        .'&location=35.690921,139.700258&radius=3000&language=ja&keyword='.$post['title'];
+        $method = "GET";
+        //接続
+        $client = new Client();
+        $response = $client->request($method, $url);
+        $shops = $response->getBody();
+        $shops = json_decode($shops, true);
+        //dd($shops['results']);
+        
+        return view('posts/candidate_cre')->with(['shops'=>$shops['results'],'post'=>$post]);
     }
     
-    public function store(Post $post,Request $request){
-        $input = $request['post'];
+    public function store(Post $post,Request $request,Restaurant $restaurant){
+        //dd($request);
+        $input = $request->post;
         $id = Auth::id();
         $input['user_id'] = $id;
+        $place = $request->shop_place;
+        $place = explode(",",$place);
+        $db_resta = Restaurant::where('api_id',$place[2])->get();
+        //dd($db_resta);
+        if(empty($db_resta)){
+            $input_resta['api_id'] = $place[2]; //plaice_idをrestaテーブルに入れるための配列に入れる
+            $input_resta['lat'] = $place[0]; //緯度
+            $input_resta['lng'] = $place[1]; //経度
+            $input_resta['name']= $place[3]; //飲食店名
+            $restaurant->fill($input_resta)->save();
+            $db_resta = Restaurant::where('api_id',$place[2])->get();
+            $db_resta = $db_resta[0];
+            dd($db_resta["attributes"]["id"]);
+        }
+        $db_resta = $db_resta[0];
+        dd($db_resta,"notnull");
         $input['restaurant_id'] = 1;
         $post->fill($input)->save();
         //画像を複数読み取りたい

@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('api_id');
-            $table->string('map');
+            $table->double('lat');
+            $table->double('lng');
             $table->timestamps();
         });
     }
