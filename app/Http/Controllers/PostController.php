@@ -73,20 +73,23 @@ class PostController extends Controller
         $place = $request->shop_place;
         $place = explode(",",$place);
         $db_resta = Restaurant::where('api_id',$place[2])->get();
-        //dd($db_resta);
-        if(empty($db_resta)){
+        /*if(empty($db_resta[0])){
+            dd($db_resta,"空っぽ");
+        }
+        dd("データ在り");*/
+        if(empty($db_resta[0])){
             $input_resta['api_id'] = $place[2]; //plaice_idをrestaテーブルに入れるための配列に入れる
             $input_resta['lat'] = $place[0]; //緯度
             $input_resta['lng'] = $place[1]; //経度
             $input_resta['name']= $place[3]; //飲食店名
             $restaurant->fill($input_resta)->save();
             $db_resta = Restaurant::where('api_id',$place[2])->get();
-            $db_resta = $db_resta[0];
-            dd($db_resta["attributes"]["id"]);
+            //dd($db_resta[0]);
         }
+        //$db_resta = $db_resta[0];
+        //dd($db_resta,"notnull");
         $db_resta = $db_resta[0];
-        dd($db_resta,"notnull");
-        $input['restaurant_id'] = 1;
+        $input['restaurant_id'] = $db_resta["id"];
         $post->fill($input)->save();
         //画像を複数読み取りたい
         $files = $request->file('image');

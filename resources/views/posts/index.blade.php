@@ -18,6 +18,7 @@
         
         <div class='posts'>
             @foreach ($posts as $post)
+                <hr/>
                 <div class='post'>
                     <div class='post'>
                         <h2 class="title">
