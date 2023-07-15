@@ -1,3 +1,7 @@
 .content__post{
     white-space: pre-line;
 }
+
+.liked {
+    color: pink;
+}

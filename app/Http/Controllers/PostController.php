@@ -21,7 +21,7 @@ class PostController extends Controller
         return view('posts/index')->with(['posts' => $post->getByat()]);
     }
     
-    public function map(Post $post,User $user){
+    public function map(Post $post,User $user,Restaurant $restaurant){
         $url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?key='
         .config('services.google.apikey')
         .'&location=35.6987769,139.76471&radius=3000&language=ja&keyword=公園OR広場OR駅';
@@ -33,7 +33,7 @@ class PostController extends Controller
         $posts = json_decode($posts, true);
         //dd($posts);
         
-        return view('posts/map')->with(['users'=>$user->get(),'posts' => $post->getByat()]);
+        return view('posts/map')->with(['restaurants'=>$restaurant->get(),'users'=>$user->get(),'posts' => $post->getByat()]);
     }
     
     public function show(Post $post,Image $image){
