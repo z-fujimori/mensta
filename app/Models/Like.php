@@ -14,4 +14,11 @@ class like extends Model
         'post_id',
         'like',
     ];
+    
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function pust(){
+        return $this->belongsTo(Post::class);
+    }
 }

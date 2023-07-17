@@ -21,9 +21,13 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/map','map')->name('map');
     Route::get('/posts/create','create')->name('create');
     Route::get('/posts/{post}','show')->name('show');
+    Route::get('/users/{user}','user')->name('user');
     Route::post('/candidate', 'candidate')->name('candidate');
     Route::post('/posts', 'store')->name('store');
     Route::get('/resta','resta')->name('resta');
+    Route::post('/like_product','like_product')->name('like_product');
+    Route::post('/like', 'ReviewController@like')->name('reviews.like');
+    
 });
 
 

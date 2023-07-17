@@ -26,27 +26,9 @@
         <div id="map"></div>
         
         <div id="posts">
-            <h1>alsldfjlskdf</h1>
-            <h1>alsldfjlskdf</h1>
-            <h1>alsldfjlskdf</h1>
-            <h1>alsldfjlskdf</h1>
         </div>
-        <div id="post">
-            <h2 class="title">
-            </h2>
-            <p class='user'>
-            </p>
-            <h2 class='ramen_name'>
-            </h2>
-            <div class='price'>
-            </div>
-            <div class="content">
-                <h3 class="content__post"> 
-                </h3>
-            </div>
-            <div class="img">
-            </div>
-        </div>
+        
+        
         
         <script>
             var MyLatLng = new google.maps.LatLng(35.6987769,139.76471);

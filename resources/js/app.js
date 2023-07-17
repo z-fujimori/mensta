@@ -8,6 +8,8 @@ window.Alpine = Alpine;
 
 window.$=jQuery;
 
+require("./fontawesome");
+
 Alpine.start();
 
 

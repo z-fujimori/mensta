@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Restaurant;
+use App\Models\Like;
 
 use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +40,10 @@ class PostController extends Controller
     public function show(Post $post,Image $image){
         $img = $image->where('post_id', '=', $post->id)->get();
         return view('posts/show')->with(['post' => $post,'img' => $img]);
+    }
+    
+    public function user(Post $post,User $user){
+        return view('posts/user')->with(['post'=>$post,'user'=>$user]);
     }
     
     public function create(Tag $tag){
@@ -107,9 +112,21 @@ class PostController extends Controller
         return redirect('/posts/' . $post->id);
     }
     
-    
-    public function resta(Request $request){
-        $name = $request['post'];
-        dd($name);
+    public function like_product(Request $request){
+        //dd($request);
+        if ( $request->input('like_product') == 0) {
+            //ステータスが0のときはデータベースに情報を保存
+            Like::create([
+                'post_id' => $request->input('post_id'),
+                'user_id' => auth()->user()->id,
+            ]);
+            //ステータスが1のときはデータベースに情報を削除
+        } elseif ( $request->input('like_product')  == 1 ) {
+            Like::where('post_id', "=", $request->input('post_id'))
+                ->where('user_id', "=", auth()->user()->id)
+                ->delete();
+        }
+        return  $request->input('like_product');
     }
+    
 }
