@@ -42,6 +42,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
+    public function getPost($id){
+        return $this->withCount("posts")->where("id",$id)->get();
+    }
+    
     public function posts(){
         return $this->hasMany(Post::class);
     }

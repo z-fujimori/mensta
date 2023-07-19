@@ -27,7 +27,15 @@ class Post extends Model
     public function getByat()
     {
         // updated_atで降順に並べた,eagerloadをするwith(['user','images'])
-        return $this->with(['user','images'])->orderBy('updated_at', 'DESC')->get();
+        return $this->withCount('likes')->with(['user','images'])->orderBy('updated_at', 'DESC')->get();
+    }
+    
+    public function getShow($id){
+        return $this->withCount('likes')->where("id",$id)->get();
+    }
+    
+    public function getUser($id){
+        return $this->withCount('likes')->where("user_id",$id)->get();
     }
     
     public function user(){

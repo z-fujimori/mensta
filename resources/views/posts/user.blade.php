@@ -8,15 +8,19 @@
         <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet"> <!--font awesome-->
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/create.css')  }}" >
-        @vite(['resources/css/app.css', 'resources/js/app.js']) <!--jquery-->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])<!--jquery-->
     </head>
     <body>
         <header>
             <h1><a href='/'>麵stagram</a></h1>
         </header>
         
-        <h3><a href='/posts/create'>create</a></h3>
-        <h3><a href='/map'>map</a></h3>
+        <div class="user_profile">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <h2 class="user_name">{{$user->name}}</h2>
+            <h2 class="post_count">投稿数：{{ $user->posts_count }}</h2>
+        </div>
+        
         
         <div class='posts'>
             @foreach ($posts as $post)
@@ -28,11 +32,9 @@
                         </h2>
                     </a>
                     
-                    <a href="/users/{{$post->user->id}}">
-                        <p class='user'>
-                            {{$post->user->name}}
-                        </p>
-                    </a>
+                    <p class='user'>
+                        {{$post->user->name}}
+                    </p>
                     
                     <h2 class='ramen_name'>
                         {{ $post->ramen_name }}

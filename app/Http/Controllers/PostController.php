@@ -19,6 +19,8 @@ use GuzzleHttp\Client;
 class PostController extends Controller
 {
     public function index(Post $post){
+        //$count = $post->withCount('likes')->get();
+        //dd($post);
         return view('posts/index')->with(['posts' => $post->getByat()]);
     }
     
@@ -38,12 +40,17 @@ class PostController extends Controller
     }
     
     public function show(Post $post,Image $image){
+        $post = $post->getShow($post->id)[0];
+        //dd($post);
         $img = $image->where('post_id', '=', $post->id)->get();
         return view('posts/show')->with(['post' => $post,'img' => $img]);
     }
     
-    public function user(Post $post,User $user){
-        return view('posts/user')->with(['post'=>$post,'user'=>$user]);
+    public function user(User $user,Post $post){
+        $count = $user->getPost($user->id)[0];
+        //dd($count);
+        $posts = $post->getUser($user->id);
+        return view('posts/user')->with(['posts' => $posts,'user'=>$count]);
     }
     
     public function create(Tag $tag){
