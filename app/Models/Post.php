@@ -35,19 +35,23 @@ class Post extends Model
     }
     
     public function getUser($id){
-        return $this->withCount('likes')->where("user_id",$id)->get();
+        return $this->withCount('likes')->where("user_id",$id)->orderBy('updated_at', 'DESC')->get();
     }
     
     public function user(){
         return $this->belongsTo(User::class);    
     }
-    
     public function restaurant(){
         return $this->belongsTo(Restaurant::class);
     }
-    
     public function likes(){
         return $this->hasMany(Like::class);
+    }
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+    public function post_tag(){
+        return $this->belongsTo(Post_tag::class);
     }
     
     public function isLikedBy($user): bool {

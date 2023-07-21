@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreignId('post_id')->constrained('posts')->onDelete('cascade');
             $table->integer('like')->default(0);
             $table->timestamps();
-            
         });
     }
 

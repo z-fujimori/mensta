@@ -6,11 +6,17 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+         <script src="https://maps.google.com/maps/api/js?key={{config('services.google.apikey')}}&language=ja" async defer></script><!--map-->
         <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet"> <!--font awesome-->
         @vite(['resources/css/app.css', 'resources/js/app.js']) <!--jquery-->
         
         <link rel="stylesheet" href="{{ asset('css/create.css')  }}" >
-        
+        <!--map-->
+        <style>
+        html { height: 70% }
+        body { height: 90% }
+        #map { height: 60%; width: 40%}
+        </style>
     </head>
     <body>
         <header>
@@ -39,6 +45,10 @@
                 {{ $post->text }}    
             </h3>
         </div>
+        
+        
+        <div id="map"></div>
+        
             
         <div class=like>
             <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -57,12 +67,56 @@
             @endguest
         </div>
         
+        
+        <div id="comment" class="comment">
+            {{--
+            @foreach($post->comment as $comme)--}}
+            @foreach($comments as $comment)
+                <h3>コメント：{{ $comment->text }}[{{$comment->user->name}} {{$comment->created_at}}]</h3>
+            @endforeach
+            @auth
+            <div id="comment_btn" class="comment_btn">
+                <i class="fa fa-comment" aria-hidden="true"></i>
+                <h3>コメント</h3>
+            </div>
+            <form action='/posts/{{$post->id}}/comment'  method="POST" enctype="multipart/form-data">
+                <div class="comment_input" id="comment_input">
+                    @csrf
+                </div>
+                <button type="button" onclick="multipleaction('/posts/{{$post->id}}/comment')" ><i class="fa fa-comment" aria-hidden="true"></i></button>
+            </form>
+            @endauth
+        </div>
+        
+        
         <div class="footer">
             <a href="/">戻る</a>
         </div>
         
         
+        
+        <script>
+            console.log({{ $post->restaurant->lat }},{{ $post->restaurant->lng }});
+            var MyLatLng = new google.maps.LatLng({{ $post->restaurant->lat }},{{ $post->restaurant->lng }});
+            var Options = {
+             zoom: 15,      //地図の縮尺値
+             center: MyLatLng,    //地図の中心座標
+             mapTypeId: 'roadmap'   //地図の種類
+            };
+            var map = new google.maps.Map(document.getElementById('map'), Options);
+            let lat;
+            let lng;
+            let marker = [];
+            lat = {{$post->restaurant->lat}};
+            lng = {{$post->restaurant->lng}};
+            marker = new google.maps.Marker({
+                position : {lat:lat,lng:lng},
+                map:map
+            });
+        </script>
+        
         <script src="{{ asset('/js/like.js')  }}"></script>
+        <script src="{{ asset('/js/comment.js')  }}"></script>
         
     </body>
 </html>

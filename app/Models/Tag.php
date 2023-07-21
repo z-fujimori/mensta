@@ -11,6 +11,11 @@ class Tag extends Model
     use HasFactory;
     
     protected $fillable = [
+        'id',
         'name',
     ];
+    
+    public function post_tag(){
+        return $this->belongsTo(Post_tag::class);
+    }
 }

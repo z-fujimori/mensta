@@ -15,7 +15,7 @@
     </head>
     <body>
         <header>
-            <h1><a herf='/'>麵stagram</a></h1>
+            <h1><a href='/'>麵stagram</a></h1>
         </header>
         
         <form method="POST" enctype="multipart/form-data">
@@ -24,7 +24,17 @@
                 <div class="title">
                     <h3>タイトル</h3>
                     <input id="title" type="text" name="post[title]" placeholder="〇〇家" value="{{ $post['title'] }}"/>
+                    <button type="button" onclick="multipleaction('/candidate')">店名検索</button>
                 </div>
+                
+                <div class="shop">
+                    <select name="shop_place">
+                        @foreach ($shops as $index => $shop)
+                            <option value="{{$shop["geometry"]["location"]["lat"]}},{{$shop["geometry"]["location"]["lng"]}},{{$shop["place_id"]}},{{$shop["name"]}}">{{ $shop["name"] }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                
                 <div class="ramen_name">
                     <h3>ラーメン</h3>
                     <input type="text" name="post[ramen_name]" placeholder="〇〇ラーメン" value="{{ $post['ramen_name'] }}"/>
@@ -37,18 +47,26 @@
                     <h3>レビュー</h3>
                     <textarea name="post[text]" placeholder="すごくおいしかった。">{{ $post['text'] }}</textarea>
                 </div>
-                 <div class="image">
+                <div class="tag">
+                    @foreach ($tags as $tag)
+                        <label><input type="checkbox" name="tag[]" value={{$tag->id}}>{{$tag->name}}!!</label>
+                    @endforeach
+                    {{--
+                    <select id="tag_check" name="tag" multiple>
+                        <option value="">タグを選択</option>
+                        @foreach ($tags as $tag)
+                            <option  value="{{ $tag->id }}">
+                                {{ $tag->name }}
+                            </option>
+                        @endforeach
+                    </select>--}}
+                </div>
+                <div class="image">
                     <input id="image" type="file" multiple="multiple" name="image[]" accept="image/*">
                 </div>
                 <div id="preview" style="display:none"></div>
                 
-                <div class="shop">
-                    <select name="shop_place">
-                        @foreach ($shops as $index => $shop)
-                            <option value="{{$shop["geometry"]["location"]["lat"]}},{{$shop["geometry"]["location"]["lng"]}},{{$shop["place_id"]}},{{$shop["name"]}}">{{ $shop["name"] }}</option>
-                        @endforeach
-                    </select>
-                </div>
+                
                 
                 <input type="hidden" id="ido">
                 <input type="hidden" id="keido">
@@ -56,12 +74,11 @@
             </div>
             
             
-            <button type="button" onclick="multipleaction('/candidate')">ページAに送信</button>
+            
             <button type="button" onclick="multipleaction('/posts')" >投稿</button>
         </form>
         
         
-            <button type="button" id="btn"> 候補表示 </button>
                 
                 
 

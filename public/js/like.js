@@ -13,7 +13,7 @@ function unlike(){
 
 
 
-var product_id;
+var post_id;
 var like_product;
 var click_button;
 var count;
@@ -27,6 +27,7 @@ window.addEventListener('DOMContentLoaded', function(){
         post_id = $(this)[0].getAttribute("post_id");
         like_product = $(this)[0].getAttribute("like_product");
         user = $(this)[0].getAttribute("user");
+        //console.log(post_id,like_product,user);
         if(user==1){
         $.ajax({
             headers: {

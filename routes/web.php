@@ -27,7 +27,8 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/resta','resta')->name('resta');
     Route::post('/like_product','like_product')->name('like_product');
     Route::post('/like', 'ReviewController@like')->name('reviews.like');
-    
+    Route::post('/posts/{post}/comment', 'comment')->name('comment');
+    //Route::post('/create_tag','create_teg')->name('create_tag');
 });
 
 

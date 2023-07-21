@@ -15,15 +15,17 @@
     </head>
     <body>
         <header>
-            <h1><a herf='/'>麵stagram</a></h1>
+            <h1><a href='/'>麵stagram</a></h1>
         </header>
         
         <form method="POST" enctype="multipart/form-data">
             <div class='create'>
                 @csrf
                 <div class="title">
-                    <h3>タイトル</h3>
+                    <h3>店名検索</h3>
                     <input id="title" type="text" name="post[title]" placeholder="〇〇家" value="{{ old('post.title') }}"/>
+                    <!--候補を表示-->
+                    <button type="button" onclick="multipleaction('/candidate')">店名検索</button>
                 </div>
                 <div class="ramen_name">
                     <h3>ラーメン</h3>
@@ -37,6 +39,20 @@
                     <h3>レビュー</h3>
                     <textarea name="post[text]" placeholder="すごくおいしかった。">{{ old('post.text') }}</textarea>
                 </div>
+                <div class="tag">
+                    @foreach ($tags as $tag)
+                        <label><input type="checkbox" name="tag[]" value={{$tag->id}}>{{$tag->name}}</label>
+                    @endforeach
+                    {{--
+                    <select id="tag_check" name="tag" multiple>
+                        <option value="">タグを選択</option>
+                        @foreach ($tags as $tag)
+                            <option  value="{{ $tag->id }}">
+                                {{ $tag->name }}
+                            </option>
+                        @endforeach
+                    </select>--}}
+                </div>
                  <div class="image">
                     <input id="image" type="file" multiple="multiple" name="image[]" accept="image/*">
                 </div>
@@ -44,12 +60,9 @@
             </div>
             
             
-            <button type="button" onclick="multipleaction('/candidate')">ページAに送信</button>
+            
             <button type="button" onclick="multipleaction('/posts')" >投稿</button>
         </form>
-        
-        
-            <button type="button" id="btn"> 候補表示 </button>
                 
                 
 

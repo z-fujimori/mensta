@@ -8,8 +8,9 @@ use App\Models\User;
 use App\Models\Image;
 use App\Models\Restaurant;
 use App\Models\Like;
-
+use App\Models\Comment;
 use App\Models\Tag;
+
 use Illuminate\Support\Facades\Auth;
 use Cloudinary;
 
@@ -39,11 +40,13 @@ class PostController extends Controller
         return view('posts/map')->with(['restaurants'=>$restaurant->get(),'users'=>$user->get(),'posts' => $post->getByat()]);
     }
     
-    public function show(Post $post,Image $image){
+    public function show(Post $post,Image $image,Comment $comment){
+        //dd($post->comment);
+        $comment = $comment->getCom($post->id);
         $post = $post->getShow($post->id)[0];
         //dd($post);
         $img = $image->where('post_id', '=', $post->id)->get();
-        return view('posts/show')->with(['post' => $post,'img' => $img]);
+        return view('posts/show')->with(['post' => $post,'img' => $img,'comments'=>$comment]);
     }
     
     public function user(User $user,Post $post){
@@ -53,11 +56,11 @@ class PostController extends Controller
         return view('posts/user')->with(['posts' => $posts,'user'=>$count]);
     }
     
-    public function create(Tag $tag){
-        return view('posts/create');
+    public function create(Tag $tag,Restaurant $restaurant){
+        return view('posts/create')->with(['tags'=>$tag->get()]);
     }
     
-    public function candidate(Request $request){
+    public function candidate(Request $request,Tag $tag){
         $post = $request->post;
         $imgs = $request->file('image');
         //dd($request->file('image'));
@@ -74,11 +77,11 @@ class PostController extends Controller
         $shops = json_decode($shops, true);
         //dd($shops['results']);
         
-        return view('posts/candidate_cre')->with(['shops'=>$shops['results'],'post'=>$post]);
+        return view('posts/candidate_cre')->with(['shops'=>$shops['results'],'post'=>$post,'tags'=>$tag->get()]);
     }
     
     public function store(Post $post,Request $request,Restaurant $restaurant){
-        //dd($request);
+        dd($request);
         $input = $request->post;
         $id = Auth::id();
         $input['user_id'] = $id;
@@ -119,6 +122,14 @@ class PostController extends Controller
         return redirect('/posts/' . $post->id);
     }
     
+    public function comment(Request $request,Post $post,Comment $comment){
+        $input['user_id'] = Auth::id();
+        $input['post_id'] = $post->id;
+        $input['text'] = $request->com;
+        $comment->fill($input)->save();
+        return redirect('/posts/'.$post->id);
+    }
+    
     public function like_product(Request $request){
         //dd($request);
         if ( $request->input('like_product') == 0) {
@@ -134,6 +145,10 @@ class PostController extends Controller
                 ->delete();
         }
         return  $request->input('like_product');
+    }
+    
+    public function create_tag(Tag $tag,Request $request){
+        dd($request);
     }
     
 }

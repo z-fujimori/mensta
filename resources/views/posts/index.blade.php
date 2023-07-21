@@ -17,6 +17,13 @@
         
         <h3><a href='/posts/create'>create</a></h3>
         <h3><a href='/map'>map</a></h3>
+        {{--
+        @if(Auth::id()==1)
+            <form  method="POST" enctype="multipart/form-data">
+                <input id="create_tag" name=tag placeholder="タグ作成"></input>
+                <button type="button" onclick="multipleaction('/create_tag')" ></button>
+            </form>
+        @endif--}}
         
         <div class='posts'>
             @foreach ($posts as $post)
@@ -52,7 +59,6 @@
                             <img id="pre" src="{{ $image->link }}" class=pre>
                         @endforeach
                     </div>
-                    <a >map</a>
                     
                     <div class=like>
                         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -76,11 +82,13 @@
             
         </div>
         
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
         <script type='module'>
             $(function(){
                 $(".title").css("color","green")
             })
         </script>
+        
         
         
         <script src="{{ asset('/js/like.js')  }}"></script>

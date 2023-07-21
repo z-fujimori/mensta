@@ -54,7 +54,6 @@
                             <img id="pre" src="{{ $image->link }}" class=pre>
                         @endforeach
                     </div>
-                    <a >map</a>
                     
                     <div class=like>
                         <meta name="csrf-token" content="{{ csrf_token() }}">

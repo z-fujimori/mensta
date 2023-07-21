@@ -19,13 +19,13 @@
     </head>
     <body>
         <header>
-            <h1><a herf='/'>麵stagram</a></h1>
+            <h1><a href='/'>麵stagram</a></h1>
         </header>
         
         <h2>[MAP A]</h2>
         <div id="map"></div>
         
-        <div id="posts">
+        <div id="posts_map">
         </div>
         
         
@@ -55,12 +55,12 @@
             
             const posts = @json($posts);
             
-            console.log(posts);
+            //console.log(posts);
             
             function markerEvent(i) {
                 marker[i].addListener('click', function() { // マーカーをクリックしたとき
                     //書いてある投稿を消す
-                    const parent = document.getElementById('posts');
+                    const parent = document.getElementById('posts_map');
                     while(parent.firstChild){
                         parent.removeChild(parent.firstChild);
                     }
@@ -74,7 +74,7 @@
                         let post = document.createElement('div');
                         post.id = "post";
                         post.className = "post";
-                        let posts = document.getElementById('posts');
+                        let posts = document.getElementById('posts_map');
                         posts.appendChild(post);
                         //タイトル
                         let title = document.createElement('h2');
