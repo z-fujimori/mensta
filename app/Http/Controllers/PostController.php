@@ -10,6 +10,7 @@ use App\Models\Restaurant;
 use App\Models\Like;
 use App\Models\Comment;
 use App\Models\Tag;
+use App\Models\Post_tag;
 
 use Illuminate\Support\Facades\Auth;
 use Cloudinary;
@@ -80,18 +81,16 @@ class PostController extends Controller
         return view('posts/candidate_cre')->with(['shops'=>$shops['results'],'post'=>$post,'tags'=>$tag->get()]);
     }
     
-    public function store(Post $post,Request $request,Restaurant $restaurant){
-        dd($request);
+    public function store(Post $post,Request $request,Restaurant $restaurant,Tag $tag,Post_tag $post_tag){
+        //$text = explode(("#"or"＃"),$request->post["text"]);
+        $text = preg_split('/(#|＃)/',$request->post["text"],PREG_SPLIT_NO_EMPTY|PREG_SPLIT_OFFSET_CAPTURE);
         $input = $request->post;
+        $input["text"] = $text[0];
         $id = Auth::id();
         $input['user_id'] = $id;
         $place = $request->shop_place;
         $place = explode(",",$place);
         $db_resta = Restaurant::where('api_id',$place[2])->get();
-        /*if(empty($db_resta[0])){
-            dd($db_resta,"空っぽ");
-        }
-        dd("データ在り");*/
         if(empty($db_resta[0])){
             $input_resta['api_id'] = $place[2]; //plaice_idをrestaテーブルに入れるための配列に入れる
             $input_resta['lat'] = $place[0]; //緯度
@@ -118,6 +117,21 @@ class PostController extends Controller
                 $input_img['link'] = $image_url;
                 $image->fill($input_img)->save();
             }
+        }
+        //タグの処理
+        foreach($text as $index => $tag_name){
+            if($index==0){
+                continue;
+            }
+            $tag_name = str_replace(["\r\n", "\r", "\n"],"",$tag_name); //タグ内の改行を消す
+            //$tag
+            $hasTag = Tag::where('name',$tag_name)->get();
+            if(empty($hasTag[0])){
+                $input_tag['name'] = $tag_name;
+                $tag->fill($input_tag)->save();
+                $hasTag = Tag::where('name',$tag_name)->get();
+            }
+            $post->tags()->attach($hasTag[0]->id);
         }
         return redirect('/posts/' . $post->id);
     }
