@@ -47,20 +47,6 @@
                     <h3>レビュー</h3>
                     <textarea name="post[text]" placeholder="すごくおいしかった。">{{ $post['text'] }}</textarea>
                 </div>
-                <div class="tag">
-                    @foreach ($tags as $tag)
-                        <label><input type="checkbox" name="tag[]" value={{$tag->id}}>{{$tag->name}}!!</label>
-                    @endforeach
-                    {{--
-                    <select id="tag_check" name="tag" multiple>
-                        <option value="">タグを選択</option>
-                        @foreach ($tags as $tag)
-                            <option  value="{{ $tag->id }}">
-                                {{ $tag->name }}
-                            </option>
-                        @endforeach
-                    </select>--}}
-                </div>
                 <div class="image">
                     <input id="image" type="file" multiple="multiple" name="image[]" accept="image/*">
                 </div>

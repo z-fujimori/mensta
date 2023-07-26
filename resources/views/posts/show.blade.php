@@ -46,6 +46,12 @@
             </h3>
         </div>
         
+        @foreach($post->tags as $tag)
+        <div class="tag">
+            <a href="/tags/{{$tag->id}}">{{ $tag->name }}</a>
+        </div>
+        @endforeach
+        
         
         <div id="map"></div>
         
@@ -93,7 +99,7 @@
             <a href="/">戻る</a>
         </div>
         
-        
+        <div class="edit"><a href="/posts/{{ $post->id }}/edit">edit</a></div>
         
         <script>
             console.log({{ $post->restaurant->lat }},{{ $post->restaurant->lng }});

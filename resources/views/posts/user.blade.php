@@ -49,6 +49,13 @@
                             {{ $post->text }}    
                         </h3>
                     </div>
+                    
+                    @foreach($post->tags as $tag)
+                    <div class="tag">
+                        <a href="/tags/{{$tag->id}}">{{ $tag->name }}</a>
+                    </div>
+                    @endforeach
+                    
                     <div class="img">
                         @foreach ($post->images as $image)
                             <img id="pre" src="{{ $image->link }}" class=pre>

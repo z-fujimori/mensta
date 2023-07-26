@@ -28,7 +28,12 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::post('/like_product','like_product')->name('like_product');
     Route::post('/like', 'ReviewController@like')->name('reviews.like');
     Route::post('/posts/{post}/comment', 'comment')->name('comment');
-    //Route::post('/create_tag','create_teg')->name('create_tag');
+    Route::get('/tags/{tag}','tag_page')->name('tag_page');
+    
+    Route::get('/mypage','mypage')->name('mypage');
+    Route::get('/posts/{post}/edit', 'edit')->name('edit');
+    Route::put('/posts/{post}', 'update')->name('update');
+    Route::delete('/posts/{post}','delete')->name('delete');
 });
 
 

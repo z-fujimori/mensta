@@ -8,23 +8,21 @@
         <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet"> <!--font awesome-->
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/create.css')  }}" >
-        @vite(['resources/css/app.css', 'resources/js/app.js']) <!--jquery-->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])<!--jquery-->
     </head>
     <body>
         <header>
             <h1><a href='/'>麵stagram</a></h1>
         </header>
         
-        <h3><a href='/posts/create'>create</a></h3>
-        <h3><a href='/map'>map</a></h3>
-        <h3><a href='/mypage'>マイページ</a></h3>
-        {{--
-        @if(Auth::id()==1)
-            <form  method="POST" enctype="multipart/form-data">
-                <input id="create_tag" name=tag placeholder="タグ作成"></input>
-                <button type="button" onclick="multipleaction('/create_tag')" ></button>
-            </form>
-        @endif--}}
+        <h2>マイページ</h2>
+        
+        <div class="user_profile">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <h2 class="user_name">{{$user->name}}</h2>
+            <h2 class="post_count">投稿数：{{ $user->posts_count }}</h2>
+        </div>
+        
         
         <div class='posts'>
             @foreach ($posts as $post)
@@ -36,11 +34,9 @@
                         </h2>
                     </a>
                     
-                    <a href="/users/{{$post->user->id}}">
-                        <p class='user'>
-                            {{$post->user->name}}
-                        </p>
-                    </a>
+                    <p class='user'>
+                        {{$post->user->name}}
+                    </p>
                     
                     <h2 class='ramen_name'>
                         {{ $post->ramen_name }}
@@ -84,20 +80,31 @@
                             <h3 class="likeCount_{{$post->id}}">{{$post->likes_count}}</h3>
                         @endguest
                     </div>
+                    <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" onclick="deletePost({{ $post->id }})">delete</button> 
+                    </form>
                     
                 </div>
             @endforeach
             
         </div>
         
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
         <script type='module'>
             $(function(){
                 $(".title").css("color","green")
             })
         </script>
         
-        
+        <script>
+            function deletePost(id) {
+                'use strict'
+                if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                    document.getElementById(`form_${id}`).submit();
+                }
+            }
+        </script>
         
         <script src="{{ asset('/js/like.js')  }}"></script>
     </body>

@@ -15,9 +15,7 @@
             <h1><a href='/'>麵stagram</a></h1>
         </header>
         
-        <h3><a href='/posts/create'>create</a></h3>
-        <h3><a href='/map'>map</a></h3>
-        <h3><a href='/mypage'>マイページ</a></h3>
+        <h2>{{$tag->name}}　のタグが付いている投稿</h2>
         {{--
         @if(Auth::id()==1)
             <form  method="POST" enctype="multipart/form-data">
@@ -55,13 +53,6 @@
                             {{ $post->text }}    
                         </h3>
                     </div>
-                    
-                    @foreach($post->tags as $tag)
-                    <div class="tag">
-                        <a href="/tags/{{$tag->id}}">{{ $tag->name }}</a>
-                    </div>
-                    @endforeach
-                    
                     <div class="img">
                         @foreach ($post->images as $image)
                             <img id="pre" src="{{ $image->link }}" class=pre>

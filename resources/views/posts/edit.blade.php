@@ -18,36 +18,36 @@
             <h1><a href='/'>麵stagram</a></h1>
         </header>
         
-        <form method="POST" enctype="multipart/form-data">
+        <form action="/posts/{{ $post->id }}" method="POST">
             <div class='create'>
                 @csrf
+                @method('PUT')
                 <div class="title">
-                    <h3>店名検索</h3>
-                    <input id="title" type="text" name="post[title]" placeholder="〇〇家" value="{{ old('post.title') }}"/>
-                    <!--候補を表示-->
-                    <button type="button" onclick="multipleaction('/candidate')">店名検索</button>
+                    <h3>タイトル</h3>
+                    <input id="title" type="text" name="post[title]" placeholder="〇〇家" value="{{ $post->title }}"/>
                 </div>
                 <div class="ramen_name">
                     <h3>ラーメン</h3>
-                    <input type="text" name="post[ramen_name]" placeholder="〇〇ラーメン" value="{{ old('post.ramen_name') }}"/>
+                    <input type="text" name="post[ramen_name]" placeholder="〇〇ラーメン" value="{{ $post->ramen_name }}"/>
                 </div>
                 <div class="price">
                     <h3>値段</h3>
-                    <input type="text" name="post[price]" placeholder="850" value="{{ old('post.price') }}"/>円
+                    <input type="text" name="post[price]" placeholder="850" value="{{ $post->price }}"/>円
                 </div>
                 <div class="text">
                     <h3>レビュー</h3>
-                    <textarea name="post[text]" placeholder="すごくおいしかった。">{{ old('post.text') }}</textarea>
+                    <textarea name="post[text]" placeholder="すごくおいしかった。">{{ $post->text }}</textarea>
                 </div>
-                 <div class="image">
-                    <input id="image" type="file" multiple="multiple" name="image[]" accept="image/*">
+                
+                <div class="image">
+                    @foreach($post->images as $image)
+                        <img id="pre" src="{{$image['link']}}" class=pre>
+                    @endforeach
                 </div>
-                <div id="preview" style="display:none"></div>
+                
             </div>
-            
-            
-            
-            <button type="button" onclick="multipleaction('/posts')" >投稿</button>
+        
+            <input type="submit" value="編集"> 
         </form>
                 
                 

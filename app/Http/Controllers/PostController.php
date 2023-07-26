@@ -81,29 +81,33 @@ class PostController extends Controller
         return view('posts/candidate_cre')->with(['shops'=>$shops['results'],'post'=>$post,'tags'=>$tag->get()]);
     }
     
-    public function store(Post $post,Request $request,Restaurant $restaurant,Tag $tag,Post_tag $post_tag){
+    public function store(Post $post,Request $request,Restaurant $restaurant,Post_tag $post_tag){
         //$text = explode(("#"or"＃"),$request->post["text"]);
-        $text = preg_split('/(#|＃)/',$request->post["text"],PREG_SPLIT_NO_EMPTY|PREG_SPLIT_OFFSET_CAPTURE);
+        $text = preg_split('/(#|＃|＃)/',$request->post["text"],PREG_SPLIT_NO_EMPTY|PREG_SPLIT_OFFSET_CAPTURE);
         $input = $request->post;
         $input["text"] = $text[0];
         $id = Auth::id();
         $input['user_id'] = $id;
         $place = $request->shop_place;
         $place = explode(",",$place);
-        $db_resta = Restaurant::where('api_id',$place[2])->get();
-        if(empty($db_resta[0])){
-            $input_resta['api_id'] = $place[2]; //plaice_idをrestaテーブルに入れるための配列に入れる
-            $input_resta['lat'] = $place[0]; //緯度
-            $input_resta['lng'] = $place[1]; //経度
-            $input_resta['name']= $place[3]; //飲食店名
-            $restaurant->fill($input_resta)->save();
+        if($place[0]!=null){
             $db_resta = Restaurant::where('api_id',$place[2])->get();
-            //dd($db_resta[0]);
+            if(empty($db_resta[0])){
+                $input_resta['api_id'] = $place[2]; //plaice_idをrestaテーブルに入れるための配列に入れる
+                $input_resta['lat'] = $place[0]; //緯度
+                $input_resta['lng'] = $place[1]; //経度
+                $input_resta['name']= $place[3]; //飲食店名
+                $restaurant->fill($input_resta)->save();
+                $db_resta = Restaurant::where('api_id',$place[2])->get();
+                //dd($db_resta[0]);
+            }
+            //$db_resta = $db_resta[0];
+            //dd($db_resta,"notnull");
+            $db_resta = $db_resta[0];
+            $input['restaurant_id'] = $db_resta["id"];
         }
-        //$db_resta = $db_resta[0];
-        //dd($db_resta,"notnull");
-        $db_resta = $db_resta[0];
-        $input['restaurant_id'] = $db_resta["id"];
+        $input['restaurant_id'] = 1;
+        //dd($input);
         $post->fill($input)->save();
         //画像を複数読み取りたい
         $files = $request->file('image');
@@ -120,11 +124,11 @@ class PostController extends Controller
         }
         //タグの処理
         foreach($text as $index => $tag_name){
+            $tag = new Tag;
             if($index==0){
                 continue;
             }
             $tag_name = str_replace(["\r\n", "\r", "\n"],"",$tag_name); //タグ内の改行を消す
-            //$tag
             $hasTag = Tag::where('name',$tag_name)->get();
             if(empty($hasTag[0])){
                 $input_tag['name'] = $tag_name;
@@ -158,11 +162,33 @@ class PostController extends Controller
                 ->where('user_id', "=", auth()->user()->id)
                 ->delete();
         }
-        return  $request->input('like_product');
+        return $request->input('like_product');
     }
     
-    public function create_tag(Tag $tag,Request $request){
-        dd($request);
+    public function tag_page(Tag $tag){
+        $posts = $tag->posts()->with('tags')->orderBy('updated_at', 'DESC')->get();
+        return view('posts/tag')->with(['posts' => $posts,'tag'=>$tag]);
     }
     
+    public function mypage(Post $post,User $user){
+        $posts = $post->getUser(Auth::id());
+        $user = $user->getPost(Auth::id())[0];
+        return view('posts/mypage')->with(['posts'=>$posts,'user'=>$user]);
+    }
+    
+    public function edit(Post $post){
+        return view('posts.edit')->with(['post' => $post]);
+    }
+    
+    public function update(PostRequest $request, Post $post){
+        $input_post = $request->post;
+        $post->fill($input_post)->save();
+    
+        return redirect('/posts/' . $post->id);
+    }
+    
+    public function delete(Post $post){
+        $post->delete();
+        return redirect('/mypage');
+    }
 }

@@ -55,8 +55,6 @@
             
             const posts = @json($posts);
             
-            //console.log(posts);
-            
             function markerEvent(i) {
                 marker[i].addListener('click', function() { // マーカーをクリックしたとき
                     //書いてある投稿を消す
@@ -103,6 +101,11 @@
                         text.className = "ramen_name";
                         text.textContent = filterdPosts[l].text;
                         post.appendChild(price);
+                        //たぐ
+                        //let tag_list = @json($);
+                        //let tag = document.createElement('h3');
+                        //text.className = "tag";
+                        
                         //画像
                         if(filterdPosts[l].images){
                             let imglen = filterdPosts[l].images.length;
