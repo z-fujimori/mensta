@@ -20,10 +20,24 @@ use GuzzleHttp\Client;
 
 class PostController extends Controller
 {
-    public function index(Post $post){
+    public function index(Post $post,Request $request,User $user){
         //$count = $post->withCount('likes')->get();
-        //dd($post);
-        return view('posts/index')->with(['posts' => $post->getByat()]);
+        $posts = $post->getByat();
+        $keyword = $request->keyword;
+        if(!empty($keyword)) {
+            $posts = $post->where('title','LIKE',"%{$keyword}%")->orWhere('ramen_name','LIKE',"%{$keyword}%")->orWhere('text','LIKE',"%{$keyword}%")->get();
+            $posts2 = Post::whereHas('user', function ($query) use ($keyword) {
+                $query->where('name', 'LIKE',"%{$keyword}%");
+            })->get();
+            $posts3 = Post::whereHas('tags', function ($query) use ($keyword) {
+                $query->where('name', 'LIKE',"%{$keyword}%");
+            })->get();
+            $posts = $posts->merge($posts2);
+            $posts = $posts->merge($posts3)->sortByDesc('updated_at');
+            //dd($posts,$posts2);
+        }
+        
+        return view('posts/index')->with(['posts' => $posts,'keyword'=>$keyword]);
     }
     
     public function map(Post $post,User $user,Restaurant $restaurant){

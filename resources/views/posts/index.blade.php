@@ -26,6 +26,16 @@
             </form>
         @endif--}}
         
+        <div class="serach">
+            <form action="/" method="GET">
+                <input type="text" name="keyword">
+                <input type="submit" value="検索">
+            </form>
+            @if(!empty($keyword))
+            <h2 class="serach-keyword">検索ワード：{{ $keyword }}</h2>
+            @endif
+        </div>
+        
         <div class='posts'>
             @foreach ($posts as $post)
                 <hr/>
