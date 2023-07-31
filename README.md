@@ -32,15 +32,15 @@ __API：__
 ## データ構造
 **テーブル構成・リレーション:**
 
-<img src="./ER.png" width="500px">
+<img src="./ER.png" width="400px">
 **各テーブル詳細：**
-<img src="./desc_posts.png" width="400px">
-<img src="./desc_users.png" width="500px">
-<img src="./desc_comments.png" width="600px">
-<img src="./desc_images.png" width="700px">
-<img src="./desc_likes.png" width="800px">
-<img src="./desc_restaurants.png" width="900px">
-<img src="./desc_tags.png" width="1000px">
+<img src="./desc_posts.png" width="300px">
+<img src="./desc_users.png" width="300px">
+<img src="./desc_comments.png" width="300px">
+<img src="./desc_images.png" width="300px">
+<img src="./desc_likes.png" width="300px">
+<img src="./desc_restaurants.png" width="300px">
+<img src="./desc_tags.png" width="300px">
 ## 機能
 - ログイン
 - 文章・画像投稿
