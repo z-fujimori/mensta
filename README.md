@@ -10,25 +10,28 @@
 今いる位置から行きたいラーメン屋さんを探しやすくするために投稿にお店の情報機能をつけました。
 ラーメン屋さんの情報をたくさんシェアしてほしいです！
 ## 開発環境
-*使用言語：*
+_使用言語：_
 - PHP
 - HTML
 - CSS
 - JavaScript
-*環境：*
+
+**環境：**
 - Laravel(ver.9)
 - AWS(EC2＋Cloud9)
 - MySQL(MariaDB)
 - Cloudinary
 - Github
-*API：*
+
+__API：__
 - Google Places API
 - Google Maps JavaScript API
+
 *デプロイ：*
 - Heroku
-##データ構造
+## データ構造
 *テーブル構成・リレーション:*
-!
+![ER図](./ER.png)
 *各テーブル詳細：*
 !
 ## 機能
