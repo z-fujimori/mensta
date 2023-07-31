@@ -31,7 +31,7 @@ __API：__
 - Heroku
 ## データ構造
 **テーブル構成・リレーション:**
-![ER図](./ER.png)
+<img src="./ER.png" width="120px">
 **各テーブル詳細：**
 ![posts](./desc_posts.png)
 ![users](./desc_users.png)
