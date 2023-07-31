@@ -34,13 +34,15 @@ __API：__
 
 <img src="./ER.png" width="400px">
 **各テーブル詳細：**
-<img src="./desc_posts.png" width="300px">
-<img src="./desc_users.png" width="300px">
-<img src="./desc_comments.png" width="300px">
-<img src="./desc_images.png" width="300px">
-<img src="./desc_likes.png" width="300px">
-<img src="./desc_restaurants.png" width="300px">
-<img src="./desc_tags.png" width="300px">
+
+<img src="./desc_posts.png" width="200px"><img src="./desc_users.png" width="200px">
+
+<img src="./desc_comments.png" width="200px"><img src="./desc_images.png" width="200px">
+
+<img src="./desc_likes.png" width="200px"><img src="./desc_restaurants.png" width="200px">
+
+<img src="./desc_tags.png" width="200px">
+
 ## 機能
 - ログイン
 - 文章・画像投稿
