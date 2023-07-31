@@ -25,13 +25,13 @@ class PostController extends Controller
         $posts = $post->getByat();
         $keyword = $request->keyword;
         if(!empty($keyword)) {
-            $posts = $post->where('title','LIKE',"%{$keyword}%")->orWhere('ramen_name','LIKE',"%{$keyword}%")->orWhere('text','LIKE',"%{$keyword}%")->get();
+            $posts = $post->where('title','LIKE',"%{$keyword}%")->orWhere('ramen_name','LIKE',"%{$keyword}%")->orWhere('text','LIKE',"%{$keyword}%")->withCount('likes')->get();
             $posts2 = Post::whereHas('user', function ($query) use ($keyword) {
                 $query->where('name', 'LIKE',"%{$keyword}%");
-            })->get();
+            })->withCount('likes')->get();
             $posts3 = Post::whereHas('tags', function ($query) use ($keyword) {
                 $query->where('name', 'LIKE',"%{$keyword}%");
-            })->get();
+            })->withCount('likes')->get();
             $posts = $posts->merge($posts2);
             $posts = $posts->merge($posts3)->sortByDesc('updated_at');
             //dd($posts,$posts2);
@@ -180,7 +180,7 @@ class PostController extends Controller
     }
     
     public function tag_page(Tag $tag){
-        $posts = $tag->posts()->with('tags')->orderBy('updated_at', 'DESC')->get();
+        $posts = $tag->posts()->with('tags')->withCount('likes')->orderBy('updated_at', 'DESC')->get();
         return view('posts/tag')->with(['posts' => $posts,'tag'=>$tag]);
     }
     
