@@ -33,7 +33,13 @@ __API：__
 **テーブル構成・リレーション:**
 ![ER図](./ER.png)
 **各テーブル詳細：**
-! [posts](./desc_posts.png)
+![posts](./desc_posts.png)
+![users](./desc_users.png)
+![comments](./desc_comments.png)
+![images](./desc_images.png)
+![likes](./desc_likes.png)
+![restaurants](./desc_restaurants.png)
+![tags](./desc_tags.png)
 ## 機能
 - ログイン
 - 文章・画像投稿
