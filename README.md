@@ -31,15 +31,16 @@ __API：__
 - Heroku
 ## データ構造
 **テーブル構成・リレーション:**
-<img src="./ER.png" width="120px">
+
+<img src="./ER.png" width="500px">
 **各テーブル詳細：**
-![posts](./desc_posts.png)
-![users](./desc_users.png)
-![comments](./desc_comments.png)
-![images](./desc_images.png)
-![likes](./desc_likes.png)
-![restaurants](./desc_restaurants.png)
-![tags](./desc_tags.png)
+<img src="./desc_posts.png" width="400px">
+<img src="./desc_users.png" width="500px">
+<img src="./desc_comments.png" width="600px">
+<img src="./desc_images.png" width="700px">
+<img src="./desc_likes.png" width="800px">
+<img src="./desc_restaurants.png" width="900px">
+<img src="./desc_tags.png" width="1000px">
 ## 機能
 - ログイン
 - 文章・画像投稿
