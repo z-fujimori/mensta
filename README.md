@@ -27,13 +27,13 @@ __API：__
 - Google Places API
 - Google Maps JavaScript API
 
-*デプロイ：*
+**デプロイ：**
 - Heroku
 ## データ構造
-*テーブル構成・リレーション:*
+**テーブル構成・リレーション:**
 ![ER図](./ER.png)
-*各テーブル詳細：*
-!
+**各テーブル詳細：**
+! [posts](./desc_posts.png)
 ## 機能
 - ログイン
 - 文章・画像投稿
