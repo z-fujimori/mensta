@@ -12,7 +12,7 @@
 ## 開発環境
 **使用言語：**
 - PHP
-- HTML
+- Blade
 - CSS
 - JavaScript
 
@@ -32,14 +32,13 @@ __API：__
 ## データ構造
 **テーブル構成・リレーション:**
 
-<img src="./ER.png" width="400px">
+<img src="./ER.png" width="300px">
+
 **各テーブル詳細：**
 
-<img src="./desc_posts.png" width="200px"><img src="./desc_users.png" width="200px">
+<img src="./desc_posts.png" width="200px"><img src="./desc_users.png" width="200px"><img src="./desc_comments.png" width="200px">
 
-<img src="./desc_comments.png" width="200px"><img src="./desc_images.png" width="200px">
-
-<img src="./desc_likes.png" width="200px"><img src="./desc_restaurants.png" width="200px">
+<img src="./desc_images.png" width="200px"><img src="./desc_likes.png" width="200px"><img src="./desc_restaurants.png" width="200px">
 
 <img src="./desc_tags.png" width="200px">
 

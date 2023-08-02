@@ -14,45 +14,48 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <header>
-            <h1><a href='/'>麵stagram</a></h1>
-        </header>
-        
-        <form action="/posts/{{ $post->id }}" method="POST">
-            <div class='create'>
-                @csrf
-                @method('PUT')
-                <div class="title">
-                    <h3>タイトル</h3>
-                    <input id="title" type="text" name="post[title]" placeholder="〇〇家" value="{{ $post->title }}"/>
-                </div>
-                <div class="ramen_name">
-                    <h3>ラーメン</h3>
-                    <input type="text" name="post[ramen_name]" placeholder="〇〇ラーメン" value="{{ $post->ramen_name }}"/>
-                </div>
-                <div class="price">
-                    <h3>値段</h3>
-                    <input type="text" name="post[price]" placeholder="850" value="{{ $post->price }}"/>円
-                </div>
-                <div class="text">
-                    <h3>レビュー</h3>
-                    <textarea name="post[text]" placeholder="すごくおいしかった。">{{ $post->text }}</textarea>
-                </div>
                 
-                <div class="image">
-                    @foreach($post->images as $image)
-                        <img id="pre" src="{{$image['link']}}" class=pre>
-                    @endforeach
+            <header>
+                <h1><a href='/'>麵stagram</a></h1>
+            </header>
+            
+            
+            <form action="/posts/{{ $post->id }}" method="POST">
+                <div class='create'>
+                    @csrf
+                    @method('PUT')
+                    <div class="title">
+                        <h3>タイトル</h3>
+                        <input id="title" type="text" name="post[title]" placeholder="〇〇家" value="{{ $post->title }}"/>
+                    </div>
+                    <div class="ramen_name">
+                        <h3>ラーメン</h3>
+                        <input type="text" name="post[ramen_name]" placeholder="〇〇ラーメン" value="{{ $post->ramen_name }}"/>
+                    </div>
+                    <div class="price">
+                        <h3>値段</h3>
+                        <input type="text" name="post[price]" placeholder="850" value="{{ $post->price }}"/>円
+                    </div>
+                    <div class="text">
+                        <h3>レビュー</h3>
+                        <textarea name="post[text]" placeholder="すごくおいしかった。">{{ $post->text }}</textarea>
+                    </div>
+                    
+                    <div class="image">
+                        @foreach($post->images as $image)
+                            <img id="pre" src="{{$image['link']}}" class=pre>
+                        @endforeach
+                    </div>
+                    
                 </div>
-                
+            
+                <input type="submit" value="編集"> 
+            </form>
+                    
+                    
+    
             </div>
-        
-            <input type="submit" value="編集"> 
-        </form>
-                
-                
-
-        </div>
-        <script src="{{ asset('/js/create.js')  }}"></script>
+            <script src="{{ asset('/js/create.js')  }}"></script>
+    
     </body>
 </html>
