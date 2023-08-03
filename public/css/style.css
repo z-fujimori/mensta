@@ -1,7 +1,28 @@
+/*body{
+    background-color: #9999;
+}*/
 .content__post{
     white-space: pre-line;
 }
 
 .liked {
     color: pink;
+}
+.post {
+    padding: 0.5em 1em;
+    width: 550px;
+    margin: auto;
+    color: #333; 
+    background: #F4C99E;/*背景色*/
+    border-top: solid 6px 	#908478;　/*上の帯*/
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+}
+.post p {
+    margin: 0; 
+    padding: 0;
+}
+
+.user_profile{
+    display: flex;
+    justify-content:flex-end;
 }

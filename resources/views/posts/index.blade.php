@@ -2,6 +2,9 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="/css/app.css" rel="stylesheet">-->
+        
         <title>麺stagram</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -10,8 +13,7 @@
         <link rel="stylesheet" href="{{ asset('css/create.css')  }}" >
         @vite(['resources/css/app.css', 'resources/js/app.js']) <!--jquery-->
     </head>
-    <body>
-        
+    <body background='{{asset('/img/men.webp')}}'>
         
             <header>
                 <h1><a href='/'>麵stagram</a></h1>
@@ -31,9 +33,9 @@
                 @endif
             </div>
         
-            <div class='posts'>
+            <div id='posts'  class='posts'>
                 @foreach ($posts as $post)
-                    <hr/>
+                    <br>
                     <div class='post'>
                         <a href="/posts/{{$post->id}}">
                             <h2 class="title text-xl">
@@ -41,11 +43,14 @@
                             </h2>
                         </a>
                         
-                        <a href="/users/{{$post->user->id}}">
-                            <p class='user'>
-                                {{$post->user->name}}
-                            </p>
-                        </a>
+                        <div class="user">
+                            <a href="/users/{{$post->user->id}}" class="user_profile">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <p class='user name'>
+                                    {{$post->user->name}}
+                                </p>
+                            </a>
+                        </div>
                         
                         <h2 class='ramen_name'>
                             {{ $post->ramen_name }}
