@@ -1,0 +1,15 @@
+h1{
+    text-align: center;
+}
+
+.input{
+    padding: 0.5em 1em;
+    width: 50%;
+    margin: auto;
+    color: #333;
+    top: 0;
+    text-align: center;
+    background: #F4C99E;/*背景色*/
+    border-top: solid 6px 	#908478;　/*上の帯*/
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+}

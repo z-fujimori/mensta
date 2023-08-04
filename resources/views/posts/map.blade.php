@@ -78,10 +78,14 @@
                         })
                         var postslen = filterdPosts.length;
                         for(var l=0;l<postslen;l++){
+                            let posts = document.getElementById('posts_map');
+                            //改行
+                            let tag = document.createElement('br');
+                            posts.appendChild(tag);
+                            //投稿
                             let post = document.createElement('div');
                             post.id = "post";
                             post.className = "post";
-                            let posts = document.getElementById('posts_map');
                             posts.appendChild(post);
                             //タイトル
                             let title = document.createElement('h2');
@@ -95,7 +99,7 @@
                             user.className = "user";
                             user.textContent = filterdPosts[l].user.name;
                             post.appendChild(user);
-                            //ラー���ン
+                            //ラーメン
                             let ramen_name = document.createElement('h3');
                             ramen_name.className = "ramen_name";
                             ramen_name.textContent = filterdPosts[l].ramen_name;
