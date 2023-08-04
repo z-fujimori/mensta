@@ -9,11 +9,11 @@
         <script src="https://maps.googleapis.com/maps/api/place/detailes/xml?key=YOUR_API_KEY&<parameters>&language=ja"></script>
         
         <link rel="stylesheet" href="{{ asset('css/create.css')  }}" >
-        
+        <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
-    <body>
+    <body background='{{asset('/img/men.webp')}}'>
             
             <header>
                 <h1><a href='/'>麵stagram</a></h1>

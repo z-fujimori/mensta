@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="{{ asset('css/create.css')  }}" >
         @vite(['resources/css/app.css', 'resources/js/app.js'])<!--jquery-->
     </head>
-    <body>
+    <body background='{{asset('/img/men.webp')}}'>
         <header>
             <h1><a href='/'>麵stagram</a></h1>
         </header>

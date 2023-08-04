@@ -26,7 +26,7 @@
         </script>
         
     </head>
-    <body>
+    <body background='{{asset('/img/men.webp')}}'>
         <header>
             <h1><a href='/'>麵stagram</a></h1>
         </header>

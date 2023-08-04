@@ -72,6 +72,7 @@
                         </div>
                         @endforeach
                         
+                        
                         <div class="img">
                             @foreach ($post->images as $image)
                                 <img id="pre" src="{{ $image->link }}" class=pre>

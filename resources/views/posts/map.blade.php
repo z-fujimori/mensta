@@ -11,6 +11,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/create.css')  }}" >
         <style>
         html { height: 90% }
         body { height: 80% }
@@ -24,14 +25,14 @@
         });
         </script>
     </head>
-    <body>   
+    <body background='{{asset('/img/men.webp')}}'>   
         
             <header>
                 <h1><a href='/'>麵stagram</a></h1>
             </header>
             
         
-            <div id="map"></div>
+            <div id="map">地図が出ない場合は再読み込みをして下さい。</div>
             
             <div id="posts_map">
             </div>
@@ -94,7 +95,7 @@
                             user.className = "user";
                             user.textContent = filterdPosts[l].user.name;
                             post.appendChild(user);
-                            //ラーメン
+                            //ラー���ン
                             let ramen_name = document.createElement('h3');
                             ramen_name.className = "ramen_name";
                             ramen_name.textContent = filterdPosts[l].ramen_name;
