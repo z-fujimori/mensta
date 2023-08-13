@@ -22,6 +22,7 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/posts/create','create')->name('create');
     Route::get('/posts/{post}','show')->name('show');
     Route::get('/users/{user}','user')->name('user');
+    Route::get('/cand','cand')->name('cand');
     Route::post('/candidate', 'candidate')->name('candidate');
     Route::post('/posts', 'store')->name('store');
     Route::get('/resta','resta')->name('resta');

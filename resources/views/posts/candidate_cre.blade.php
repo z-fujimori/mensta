@@ -27,28 +27,33 @@
                     <div class="title">
                         <h3>タイトル</h3>
                         <input id="title" type="text" name="post[title]" placeholder="〇〇家" value="{{ $post['title'] }}"/>
-                        <button type="button" onclick="multipleaction('/candidate')">店名検索</button>
                     </div>
                     
+                    
                     <div class="shop">
+                        <h3>お店</h3>
                         <select name="shop_place">
                             @foreach ($shops as $index => $shop)
                                 <option value="{{$shop["geometry"]["location"]["lat"]}},{{$shop["geometry"]["location"]["lng"]}},{{$shop["place_id"]}},{{$shop["name"]}}">{{ $shop["name"] }}</option>
                             @endforeach
+                            <option value="0,0,0,none">お店の位置情報をつけない</option>
                         </select>
+                        <div class="serc-again-box">
+                            <a href='/posts/create' class="serch again">お店を検索しなおす</a>
+                        </div>
                     </div>
                     
                     <div class="ramen_name">
                         <h3>ラーメン</h3>
-                        <input type="text" name="post[ramen_name]" placeholder="〇〇ラーメン" value="{{ $post['ramen_name'] }}"/>
+                        <input type="text" name="post[ramen_name]" placeholder="〇〇ラーメン" value="{{ old('post.ramen_name') }}"/>
                     </div>
                     <div class="price">
                         <h3>値段</h3>
-                        <input type="text" name="post[price]" placeholder="850" value="{{ $post['price'] }}"/>円
+                        <input type="text" name="post[price]" placeholder="850" value="{{ old('post.price') }}"/>円
                     </div>
                     <div class="text">
                         <h3>レビュー</h3>
-                        <textarea name="post[text]" placeholder="すごくおいしかった。">{{ $post['text'] }}</textarea>
+                        <textarea name="post[text]" placeholder="すごくおいしかった。">{{ old('post.text') }}</textarea>
                     </div>
                     <div class="image">
                         <input id="image" type="file" multiple="multiple" name="image[]" accept="image/*">

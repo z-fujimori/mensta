@@ -10,3 +10,18 @@ body{
     max-width: 20%;
     height: auto;
 }
+.serch{
+    color: black;
+    text-decoration-line: none;
+    border-radius: 0.6vh;
+}
+.serch,
+a.serch {
+  color: #777777;
+  background-color: #FFC7AF;
+}
+.serch:hover,
+a.serch:hover {
+  color: #444444;
+  background: #FFC7AF;
+}

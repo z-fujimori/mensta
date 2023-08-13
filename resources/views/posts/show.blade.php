@@ -3,12 +3,15 @@
     <head>
         <meta charset="utf-8">
         <title>麺stagram</title>
+        
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+        
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
          <script src="https://maps.google.com/maps/api/js?key={{config('services.google.apikey')}}&language=ja" async defer></script><!--map-->
         <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet"> <!--font awesome-->
-        @vite(['resources/css/app.css', 'resources/js/app.js']) <!--jquery-->
         
         <link rel="stylesheet" href="{{ asset('css/create.css')  }}" >
         <!--map-->
@@ -24,6 +27,9 @@
         // Use the 'v' parameter to indicate the version to load (alpha, beta, weekly, etc.)
         });
         </script>
+        
+        @vite(['resources/css/app.css', 'resources/js/app.js']) <!--jquery-->
+
         
     </head>
     <body background='{{asset('/img/men.webp')}}'>
@@ -62,9 +68,9 @@
             </div>
             @endforeach
             
-            
-            <div id="map"></div>
-            
+            @if($post->restaurant_id >= '2')
+                <div id="map"></div>
+            @endif
                 
             <div class=like>
                 <meta name="csrf-token" content="{{ csrf_token() }}">

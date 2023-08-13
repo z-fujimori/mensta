@@ -17,7 +17,7 @@
             </header>
             
             <h2>マイページ</h2>
-            
+            <h3><a href='/posts/create'>create</a></h3>
             
             <div class="user_profile">
                 <i class="fa fa-user" aria-hidden="true"></i>

@@ -52,7 +52,7 @@ class PostController extends Controller
         $posts = json_decode($posts, true);
         //dd($posts);
         
-        return view('posts/map')->with(['restaurants'=>$restaurant->get(),'users'=>$user->get(),'posts' => $post->getByat()]);
+        return view('posts/map')->with(['restaurants'=>$restaurant->where('id','>=',2)->get(),'users'=>$user->get(),'posts' => $post->getByat()]);
     }
     
     public function show(Post $post,Image $image,Comment $comment){
@@ -81,9 +81,16 @@ class PostController extends Controller
         //dd($request->file('image'));
         //dd($request->file($file->getRealPath());
         
+        $client = new Client();
+        $method = "GET";
+        $station = "https://express.heartrails.com/api/json?method=getStations&name=$request->station";
+        $response = $client->request($method,$station);
+        $restaurants = json_decode($response->getBody(), true);
+        //dd($restaurants["response"]["station"][0]);
+        
         $url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?key='
         .config('services.google.apikey')
-        .'&location=35.690921,139.700258&radius=3000&language=ja&keyword='.$post['title'];
+        .'&location='.$restaurants["response"]["station"][0]["y"].",".$restaurants["response"]["station"][0]["x"].'&radius=3000&language=ja&keyword='.$post['title'];
         $method = "GET";
         //接続
         $client = new Client();
@@ -93,6 +100,10 @@ class PostController extends Controller
         //dd($shops['results']);
         
         return view('posts/candidate_cre')->with(['shops'=>$shops['results'],'post'=>$post,'tags'=>$tag->get()]);
+    }
+    
+    public function cand(){
+        return view('posts/cand_cre');
     }
     
     public function store(Post $post,Request $request,Restaurant $restaurant,Post_tag $post_tag){
@@ -120,7 +131,6 @@ class PostController extends Controller
             $db_resta = $db_resta[0];
             $input['restaurant_id'] = $db_resta["id"];
         }
-        $input['restaurant_id'] = 1;
         //dd($input);
         $post->fill($input)->save();
         //画像を複数読み取りたい

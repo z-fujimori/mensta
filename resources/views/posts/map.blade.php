@@ -24,6 +24,7 @@
         // Use the 'v' parameter to indicate the version to load (alpha, beta, weekly, etc.)
         });
         </script>
+        
     </head>
     <body background='{{asset('/img/men.webp')}}'>   
         
