@@ -41,11 +41,11 @@
             
             
             <script>
-                var MyLatLng = new google.maps.LatLng(35.6987769,139.76471);
+                //var MyLatLng = new google.maps.LatLng(35.6987769,139.76471);
                 //const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
                 var Options = {
                  zoom: 12,      //地図の縮尺値
-                 center: MyLatLng,    //地図の中心座標
+                 center: {lat:35.6987769, lng:139.76471},    //地図の中心座標
                  mapTypeId: 'roadmap'   //地図の種類
                 };
                 var map = new google.maps.Map(document.getElementById('map'), Options);
