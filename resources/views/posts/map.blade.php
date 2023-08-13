@@ -39,7 +39,10 @@
             </div>
             
             
-            
+            <script
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+              defer
+            ></script>
             <script>
                 //var MyLatLng = new google.maps.LatLng(35.6987769,139.76471);
                 //const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
