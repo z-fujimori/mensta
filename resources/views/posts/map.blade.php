@@ -7,7 +7,7 @@
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         
         <script src="https://maps.google.com/maps/api/js?key={{config('services.google.apikey')}}&language=ja" async defer></script>
-        
+        -
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
@@ -39,10 +39,10 @@
             </div>
             
             
-            <script
-              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+            {{--<script
+              src="https://maps.googleapis.com/maps/api/js?key={{config('services.google.apikey')}}&callback=initMap&v=weekly"
               defer
-            ></script>
+            ></script>--}}
             <script>
                 //var MyLatLng = new google.maps.LatLng(35.6987769,139.76471);
                 //const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
