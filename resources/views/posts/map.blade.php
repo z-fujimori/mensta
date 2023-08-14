@@ -44,6 +44,7 @@
               defer
             ></script>--}}
             <script>
+                src="https://maps.googleapis.com/maps/api/js?key={{config('services.google.apikey')}}&callback=initMap&v=weekly"
                 //var MyLatLng = new google.maps.LatLng(35.6987769,139.76471);
                 //const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
                 var Options = {
