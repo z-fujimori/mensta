@@ -215,4 +215,8 @@ class PostController extends Controller
         $post->delete();
         return redirect('/mypage');
     }
+    
+    public function test(){
+        return view('posts/test');
+    }
 }
