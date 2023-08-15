@@ -70,7 +70,8 @@
             @endforeach
             
             @if($post->restaurant_id >= '2')
-                <div id="map"></div>
+                <div id="map">地図が出ない場合は再読み込みをして下さい。</div>
+                <div id="map">［地図］</div>
             @endif
                 
             <div class=like>
@@ -119,12 +120,13 @@
             <div class="edit"><a href="/posts/{{ $post->id }}/edit">edit</a></div>
             
             <script>
+                src="https://maps.googleapis.com/maps/api/js?key={{config('services.google.apikey')}}&callback=initMap&v=weekly"
                 console.log({{ $post->restaurant->lat }},{{ $post->restaurant->lng }});
-                var MyLatLng = new google.maps.LatLng({{ $post->restaurant->lat }},{{ $post->restaurant->lng }});
+                //var MyLatLng = new google.maps.LatLng({{ $post->restaurant->lat }},{{ $post->restaurant->lng }});
                 var Options = {
-                 zoom: 15,      //地図の縮尺値
-                 center: MyLatLng,    //地図の中心座標
-                 mapTypeId: 'roadmap'   //地図の種類
+                    zoom: 15,      //地図の縮尺値
+                    center: {lat:{{ $post->restaurant->lat }}, lng:{{ $post->restaurant->lng }}},    //地図の中心座標
+                    mapTypeId: 'roadmap'   //地図の種類
                 };
                 var map = new google.maps.Map(document.getElementById('map'), Options);
                 let lat;
