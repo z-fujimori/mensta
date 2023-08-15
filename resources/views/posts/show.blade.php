@@ -70,7 +70,7 @@
             @endforeach
             
             @if($post->restaurant_id >= '2')
-                <div id="map">地図が出ない場合は再読み込みをして下さい。</div>
+                <script src="https://maps.googleapis.com/maps/api/js?key={{config('services.google.apikey')}}&callback=initMap&v=weekly"></script>
                 <div id="map">［地図］</div>
             @endif
                 
