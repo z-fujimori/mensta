@@ -11,7 +11,7 @@
         <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet"> <!--font awesome-->
         <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/create.css')  }}" >
-        @vite(['resources/css/app.css', 'resources/js/app.js']) <!--jquery-->
+        @vite([ 'resources/js/app.js']) <!--jquery-->
     </head>
     <body background='{{asset('/img/men.webp')}}'>
         

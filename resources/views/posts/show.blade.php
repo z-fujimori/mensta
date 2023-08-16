@@ -25,10 +25,10 @@
         <style>
         html { height: 70% }
         body { height: 90% }
-        #map { height: 60%; width: 40%}
+        #map { height: 400px; width: 60%; margin:auto}
         </style>
         
-        @vite(['resources/css/app.css', 'resources/js/app.js']) <!--jquery-->
+        @vite([ 'resources/js/app.js']) <!--jquery-->
 
         
     </head>
@@ -67,11 +67,6 @@
                 <a href="/tags/{{$tag->id}}">{{ $tag->name }}</a>
             </div>
             @endforeach
-            
-            @if($post->restaurant_id >= '2')
-                <script src="https://maps.googleapis.com/maps/api/js?key={{config('services.google.apikey')}}&callback=initMap&v=weekly"></script>
-                <div id="map">［地図］</div>
-            @endif
                 
             <div class=like>
                 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -111,36 +106,42 @@
                 @endauth
             </div>
             
-            
             <div class="footer">
                 <a href="/">戻る</a>
             </div>
             
             <div class="edit"><a href="/posts/{{ $post->id }}/edit">edit</a></div>
-            
-            <script>
-                src="https://maps.googleapis.com/maps/api/js?key={{config('services.google.apikey')}}&callback=initMap&v=weekly"
-                console.log({{ $post->restaurant->lat }},{{ $post->restaurant->lng }});
-                //var MyLatLng = new google.maps.LatLng({{ $post->restaurant->lat }},{{ $post->restaurant->lng }});
-                var Options = {
-                    zoom: 15,      //地図の縮尺値
-                    center: {lat:{{ $post->restaurant->lat }}, lng:{{ $post->restaurant->lng }}},    //地図の中心座標
-                    mapTypeId: 'roadmap'   //地図の種類
-                };
-                var map = new google.maps.Map(document.getElementById('map'), Options);
-                let lat;
-                let lng;
-                let marker = [];
-                lat = {{$post->restaurant->lat}};
-                lng = {{$post->restaurant->lng}};
-                marker = new google.maps.Marker({
-                    position : {lat:lat,lng:lng},
-                    map:map
-                });
-            </script>
     
         </div>
         
+
+            @if($post->restaurant_id >= '2')
+                <script src="https://maps.googleapis.com/maps/api/js?key={{config('services.google.apikey')}}&callback=initMap&v=weekly"></script>
+                <div id="map">［地図］</div>
+            @endif                
+ 
+        
+        
+        <script>
+            src="https://maps.googleapis.com/maps/api/js?key={{config('services.google.apikey')}}&callback=initMap&v=weekly"
+            console.log({{ $post->restaurant->lat }},{{ $post->restaurant->lng }});
+            //var MyLatLng = new google.maps.LatLng({{ $post->restaurant->lat }},{{ $post->restaurant->lng }});
+            var Options = {
+                zoom: 17,      //地図の縮尺値
+                center: {lat:{{ $post->restaurant->lat }}, lng:{{ $post->restaurant->lng }}},    //地図の中心座標
+                mapTypeId: 'roadmap'   //地図の種類
+            };
+            var map = new google.maps.Map(document.getElementById('map'), Options);
+            let lat;
+            let lng;
+            let marker = [];
+            lat = {{$post->restaurant->lat}};
+            lng = {{$post->restaurant->lng}};
+            marker = new google.maps.Marker({
+                position : {lat:lat,lng:lng},
+                map:map
+            });
+        </script>
         
         <script src="{{ asset('/js/like.js')  }}"></script>
         <script src="{{ asset('/js/comment.js')  }}"></script>

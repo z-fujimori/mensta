@@ -22,7 +22,7 @@
         <style>
         html { height: 90% }
         body { height: 80% }
-        #map { height: 80%; width: 80%}
+        #map { height: 80%; width: 80%; margin:auto}
         </style>
         
     </head>
