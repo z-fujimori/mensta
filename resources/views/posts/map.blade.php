@@ -6,7 +6,6 @@
         
         <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         
-        <script type="text/javascript" src="https://maps.google.com/maps/api/js?key={{config('services.google.apikey')}}&language=ja" async defer></script>
         -
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
