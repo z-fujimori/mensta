@@ -34,7 +34,7 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/mypage','mypage')->name('mypage');
     Route::get('/posts/{post}/edit', 'edit')->name('edit');
     Route::put('/posts/{post}', 'update')->name('update');
-    Route::delete('/posts/{post}','delete')->name('delete');
+    Route::delete('/posts/{post}/delete','delete')->name('delete');
     
     Route::get('/test-map','test')->name('test');
 });

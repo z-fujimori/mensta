@@ -200,11 +200,11 @@ class PostController extends Controller
         return view('posts/mypage')->with(['posts'=>$posts,'user'=>$user]);
     }
     
-    public function edit(Post $post){
+    public function edit(Post $post, Request $request){
         return view('posts.edit')->with(['post' => $post]);
     }
     
-    public function update(PostRequest $request, Post $post){
+    public function update(Request $request, Post $post){
         $input_post = $request->post;
         $post->fill($input_post)->save();
     
@@ -212,8 +212,9 @@ class PostController extends Controller
     }
     
     public function delete(Post $post){
+        dd('ok');
         $post->delete();
-        return redirect('/mypage');
+        return redirect('/');
     }
     
     public function test(){
