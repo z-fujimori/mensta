@@ -140,7 +140,6 @@ class PostController extends Controller
             foreach($files as $file){
                 $image = new Image;
                 $f[] = $file;
-                dd(file);
                 $image_url = Cloudinary::upload($file->getRealPath())->getSecurePath();
                 $input_img['post_id'] = $post->id;
                 $input_img['link'] = $image_url;
