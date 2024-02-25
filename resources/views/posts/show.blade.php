@@ -111,6 +111,7 @@
             </div>
             
             <div class="edit"><a href="/posts/{{ $post->id }}/edit">edit</a></div>
+            <div class="delete"><a href="/posts/{{ $post->id }}">delete</a></div>
     
         </div>
         
