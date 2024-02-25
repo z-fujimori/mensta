@@ -82,6 +82,7 @@
                                 <h3 class="likeCount_{{$post->id}}">{{$post->likes_count}}</h3>
                             @endguest
                         </div>
+                        <div class="edit"><a href="/posts/{{ $post->id }}/edit">edit</a></div>
                         <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                             @csrf
                             @method('DELETE')

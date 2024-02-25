@@ -208,13 +208,12 @@ class PostController extends Controller
         $input_post = $request->post;
         $post->fill($input_post)->save();
     
-        return redirect('/posts/' . $post->id);
+        return redirect('/mypage');
     }
     
     public function delete(Post $post){
-        dd('ok');
         $post->delete();
-        return redirect('/');
+        return redirect('/mypage');
     }
     
     public function test(){
